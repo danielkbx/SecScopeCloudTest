@@ -29,7 +29,7 @@ final class Cloud_TestUITests: XCTestCase {
                 
         app.windows/*@START_MENU_TOKEN@*/.buttons["Click me"]/*[[".groups.buttons[\"Click me\"]",".buttons[\"Click me\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
         app.dialogs.buttons.matching(identifier: "OKButton").element.click()
-        add(XCTAttachment(screenshot: XCUIScreen.main.screenshot()))
+        sleep(2)
         XCTFail("You're about to be crushed by a giant corn!")
     }
     

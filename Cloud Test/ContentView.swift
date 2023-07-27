@@ -20,10 +20,13 @@ struct ContentView: View {
                 self.state = "clicked"
                 if panel.runModal() == .OK, let url = panel.url {
                     self.state = "selected"
-                    let bookmark = try! url.bookmarkData(options: [.withSecurityScope, .securityScopeAllowOnlyReadAccess])
-                    print("\(bookmark.count)")
-                    self.size = bookmark.count
-                    self.state = "bookmarked"
+                    if let bookmark = try? url.bookmarkData(options: [.withSecurityScope, .securityScopeAllowOnlyReadAccess]) {
+                        print("\(bookmark.count)")
+                        self.size = bookmark.count
+                        self.state = "bookmarked"
+                    } else {
+                        self.state = "kapuuuuut"
+                    }
                 }
             }
             Text("\(self.size)")
