@@ -28,7 +28,8 @@ final class Cloud_TestUITests: XCTestCase {
         app.launch()
                 
         app.windows/*@START_MENU_TOKEN@*/.buttons["Click me"]/*[[".groups.buttons[\"Click me\"]",".buttons[\"Click me\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
-        app.dialogs.buttons.matching(identifier: "OKButton").element.click()
+        app.dialogs.buttons.matching(identifier: "OKButton").element.click()        
+        add(XCTAttachment(screenshot: XCUIScreen.main.screenshot()))
     }
     
 }
