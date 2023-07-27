@@ -9,16 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     @State var size: Int = 0
+    @State var state: String = "waiting"
     var body: some View {
         VStack {
+            Text("State: \(self.state)")
             Button("Click me") {
                 let panel = NSOpenPanel()
                 panel.allowsMultipleSelection = false
                 panel.canChooseDirectories = true
+                self.state = "clicked"
                 if panel.runModal() == .OK, let url = panel.url {
+                    self.state = "selected"
                     let bookmark = try! url.bookmarkData(options: [.withSecurityScope, .securityScopeAllowOnlyReadAccess])
                     print("\(bookmark.count)")
                     self.size = bookmark.count
+                    self.state = "bookmarked"
                 }
             }
             Text("\(self.size)")
