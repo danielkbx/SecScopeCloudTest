@@ -12,7 +12,7 @@ struct ContentView: View {
     @State var state: String = "waiting"
     var body: some View {
         VStack {
-            Text("State: \(self.state)")
+            Text("State: \(self.state)").accessibilityIdentifier("state")
             Button("Click me") {
                 let panel = NSOpenPanel()
                 panel.allowsMultipleSelection = false
@@ -20,6 +20,12 @@ struct ContentView: View {
                 self.state = "clicked"
                 if panel.runModal() == .OK, let url = panel.url {
                     self.state = "selected"
+                    let isScoped = url.startAccessingSecurityScopedResource()
+                    defer {
+                        if isScoped {
+                            url.stopAccessingSecurityScopedResource()
+                        }
+                    }
                     if let bookmark = try? url.bookmarkData(options: [.withSecurityScope, .securityScopeAllowOnlyReadAccess]) {
                         print("\(bookmark.count)")
                         self.size = bookmark.count
