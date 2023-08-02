@@ -26,7 +26,7 @@ struct ContentView: View {
                             url.stopAccessingSecurityScopedResource()
                         }
                     }
-                    if let bookmark = try? url.bookmarkData(options: [.withSecurityScope, .securityScopeAllowOnlyReadAccess]) {
+                    if let bookmark = try? url.bookmarkData() {
                         print("\(bookmark.count)")
                         self.size = bookmark.count
                         self.state = "bookmarked"
