@@ -30,8 +30,10 @@ final class Cloud_TestUITests: XCTestCase {
         app.windows/*@START_MENU_TOKEN@*/.buttons["Click me"]/*[[".groups.buttons[\"Click me\"]",".buttons[\"Click me\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
         app.dialogs.buttons.matching(identifier: "OKButton").element.click()
         
-        let state = app.windows.staticTexts.matching(identifier: "state").element.value as? String
-        XCTAssertEqual(state, "State: bookmarked")
+        let statePlain = app.windows.staticTexts.matching(identifier: "statePlain").element.value as? String
+        XCTAssertEqual(statePlain, "bookmarked")
+        let stateScoped = app.windows.staticTexts.matching(identifier: "stateScoped").element.value as? String
+        XCTAssertEqual(statePlain, "bookmarked")
     }
     
 }
