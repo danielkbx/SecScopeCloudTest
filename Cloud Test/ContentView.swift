@@ -43,7 +43,7 @@ struct ContentView: View {
                     } else {
                         self.statePlain = "coruuuuuupt"
                     }
-                    if let bookmarkScoped = try? url.bookmarkData(options: [.securityScopeAllowOnlyReadAccess]) {
+                    if let bookmarkScoped = try? url.bookmarkData(options: [.withSecurityScope]) {
                         self.sizeScoped = bookmarkScoped.count
                         self.stateScoped = "bookmarked"
                     } else {
