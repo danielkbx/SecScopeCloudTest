@@ -33,7 +33,12 @@ final class Cloud_TestUITests: XCTestCase {
         let statePlain = app.windows.staticTexts.matching(identifier: "statePlain").element.value as? String
         XCTAssertEqual(statePlain, "bookmarked")
         let stateScoped = app.windows.staticTexts.matching(identifier: "stateScoped").element.value as? String
-        XCTAssertEqual(stateScoped, "bookmarked")        
+        XCTAssertEqual(stateScoped, "bookmarked")    
+        
+        let screenshot = app.windows.firstMatch.screenshot()
+        let attachment = XCTAttachment(screenshot: screenshot)
+        attachment.lifetime = .keepAlways
+        add(attachment)
     }
     
 }
